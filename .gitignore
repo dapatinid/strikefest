@@ -1,7 +1,6 @@
 # /.phpunit.cache
 # /public/build
 # /public/hot
-# /public/storage
 # /storage/*.key
 # /storage/pail
 # .env.backup
@@ -22,6 +21,7 @@
 
 .env
 /database
+/public/storage
 /node_modules
 /storage
 /vendor
