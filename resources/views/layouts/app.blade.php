@@ -171,7 +171,8 @@
             <x-side-bar smart collapsible navigate-hover >
                 <x-slot:brand>
                     <div class="mt-5 flex items-center justify-center">
-                        <img src="{{ asset('/assets/images/tsui.png') }}" width="40" height="40" />
+                        {{-- <img src="{{ asset('/assets/images/tsui.png') }}" width="40" height="40" /> --}}
+                        LOGO
                     </div>
                 </x-slot:brand>
                 <x-side-bar.item text="Home" icon="home" :route="route('home')" />
