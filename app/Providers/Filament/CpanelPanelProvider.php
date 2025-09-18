@@ -27,8 +27,8 @@ class CpanelPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('cpanel')
-            ->path('cpanel')
+            ->id('copanel')
+            ->path('copanel')
             ->login()
             ->spa()
             ->userMenuItems([
@@ -49,8 +49,8 @@ class CpanelPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                // AccountWidget::class,
+                // FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

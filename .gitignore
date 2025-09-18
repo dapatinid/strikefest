@@ -21,6 +21,7 @@
 
 .env
 /database
+/public/hot
 /public/storage
 /node_modules
 /storage
