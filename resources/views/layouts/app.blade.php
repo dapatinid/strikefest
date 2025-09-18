@@ -159,7 +159,7 @@
                             @csrf
                             <x-dropdown.items :text="__('Profile')" :href="route('user.profile')" wire:navigate.hover class="border-b border-slate-100 dark:border-slate-600"/>
                             @if (Auth::check() && Auth::user()->is_admin == true)
-                            <x-dropdown.items :text="__('Control Panel')" href="/cpanel" />
+                            <x-dropdown.items :text="__('Control Panel')" href="/copanel" />
                             @endif
                             <x-dropdown.items :text="__('Logout')" onclick="event.preventDefault(); this.closest('form').submit();" separator />
                         </form>
