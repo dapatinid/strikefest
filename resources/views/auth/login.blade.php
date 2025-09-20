@@ -1,7 +1,6 @@
 <x-guest-layout>
     <div class="my-6 flex items-center justify-center">
-        {{-- <img src="{{ asset('/assets/images/tsui.png') }}" /> --}}
-        STRIKEFEST 2025
+        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" />
     </div>
 
     <form method="POST" action="{{ route('login') }}">

@@ -171,8 +171,7 @@
             <x-side-bar smart collapsible navigate-hover >
                 <x-slot:brand>
                     <div class="mt-5 flex items-center justify-center">
-                        {{-- <img src="{{ asset('/assets/images/tsui.png') }}" width="40" height="40" /> --}}
-                        LOGO
+                        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" width="80" height="80" />
                     </div>
                 </x-slot:brand>
                 <x-side-bar.item text="Home" icon="home" :route="route('home')" />
@@ -186,6 +185,7 @@
                 @endif
                 @endauth
 
+                <x-side-bar.item text="Chat Whatapps" icon="chat-bubble-bottom-center-text" href="https://wa.me/6281325171106" target="_blank"/>
                 <x-side-bar.item text="Tentang" icon="information-circle" :route="route('about')" />
             </x-side-bar>
         </x-slot:menu>
