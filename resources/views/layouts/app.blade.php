@@ -7,6 +7,8 @@
 
         {{-- <title>{{ config('app.name', 'Acara') }}</title> --}}
         <title>{{ $title ?? 'StrikeFest' }}</title>
+                <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -171,7 +173,7 @@
             <x-side-bar smart collapsible navigate-hover >
                 <x-slot:brand>
                     <div class="mt-5 flex items-center justify-center">
-                        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" width="80" height="80" />
+                        <img src="{{ asset('/assets/images/LogoStrikefest2025-512x512.png') }}" width="80" height="80" />
                     </div>
                 </x-slot:brand>
                 <x-side-bar.item text="Home" icon="home" :route="route('home')" />
