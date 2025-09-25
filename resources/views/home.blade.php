@@ -1,83 +1,161 @@
-<x-app-layout>
-    @php
-    $Event = App\Models\Event::orderby('date_from')->paginate(10);
-    foreach ( $Event as $e) {
-        $imgs[] = [
-            'src' => Str::replace('%2F', '/',url('storage', $e->cover)),
-            'alt' => 'Event',
-        ];
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Karimunjawa StrikeFest 2025</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass { background: rgba(255,255,255,0.3); backdrop-filter: blur(8px);} 
+    .hero-bg { background-size: cover; background-position: center; }
+    .sponsor-slider { display: flex; animation: scroll 20s linear infinite; }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
-    // dd($imgs);
-    @endphp
+  </style>
+</head>
+<body class="antialiased font-sans bg-gradient-to-b from-sky-100 to-blue-50 text-slate-800">
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 shadow">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" alt="Logo StrikeFest" class="w-12 h-12">
+        <h1 class="font-bold text-lg text-sky-700">Karimunjawa StrikeFest 2025</h1>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#info" class="hover:text-sky-700">Informasi Event</a>
+        <a href="#daftar" class="hover:text-sky-700">Pendaftaran</a>
+        <a href="#panduan" class="hover:text-sky-700">Panduan Lomba</a>
+        <a href="#galeri" class="hover:text-sky-700">Galeri</a>
+        <a href="#sponsor" class="hover:text-sky-700">Sponsor</a>
+        <a href="#chat" class="hover:text-sky-700">Live Chat</a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="">
-        @if (count($imgs) == 1)
-            <x-carousel autoplay stop-on-hover without-indicators round wrapper="aspect-[3/1]"
-            :images="$imgs"
-            />
-        @else
-            <x-carousel autoplay stop-on-hover round wrapper="aspect-[3/1]"
-            :images="$imgs"
-            />
-        @endif
+  <!-- HERO -->
+  <section class="pt-20 relative">
+    <div class="hero-bg h-[70vh] flex flex-col items-center justify-center text-center" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=60')">
+      <div class="p-8 glass rounded-2xl">
+        <h2 class="text-4xl md:text-6xl font-extrabold text-sky-900">Karimunjawa StrikeFest 2025</h2>
+        <p class="mt-4 text-lg md:text-xl text-sky-800">14–16 November 2025 | Pulau Karimunjawa</p>
+        <div id="countdown" class="mt-6 text-2xl font-bold text-sky-900"></div>
+        <a href="#daftar" class="mt-6 inline-block px-6 py-3 bg-sky-700 text-white font-semibold rounded-xl shadow hover:bg-sky-800">Daftar Sekarang</a>
+      </div>
     </div>
+  </section>
 
-    <div class="mt-5 mb-2 text-xl dark:text-white">
-        Join Us
-    </div>
+  <!-- Informasi Event -->
+  <section id="info" class="max-w-6xl mx-auto py-16 px-4">
+    <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Informasi Event</h3>
+    <p class="text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
+      Karimunjawa StrikeFest merupakan inisiatif besar untuk mengembangkan sektor perikanan dan sport tourism di Jawa Tengah. Event ini memperkenalkan keindahan alam Karimunjawa, kompetisi memancing internasional, kegiatan konservasi laut (Ngopeni Laut), serta pameran UMKM lokal.
+    </p>
+  </section>
 
-    <div class="space-y-3 mb-7 ">
-    @foreach ($Event as $ev)
-        <a wire:navigate.hover href="{{ route('event', ['slug' => $ev->slug]) }}" class="p-2 flex space-x-4 bg-white dark:bg-primary-700 rounded-xl">
-            <div class="flex-none"><img src="{{ Str::replace('%2F', '/',url('storage', $ev->cover)) }}" alt="" class="size-18 object-cover aspect-square rounded-md"></div>
-            <div class="w-auto shrink">
-                <div class="font-bold dark:text-white">{{ $ev->title }}</div>
-                <div class="text-xs dark:text-primary-200">{{ $ev->subtitle }} {{ $ev->categories }}</div>
-                {{-- <div class="text-gray-500">@currency($ev->price)</div> --}}
-                @if ($ev->tags != '')
-                <div>
-                    @php
-                        $tags = Str::of($ev->tags)->explode(',');
-                    @endphp
-                    @foreach ($tags as $tag)
-                    <x-badge text="{{ $tag }}" color="lime" outline xs/>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-            <div class="flex-none ms-auto bg-primary-600 rounded-r-md text-white w-5 items-center relative pt-6"><x-icon name="chevron-right" class="h-5 w-5"/></div>
-        </a>
-    @endforeach
+  <!-- Pendaftaran -->
+  <section id="daftar" class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Formulir Pendaftaran</h3>
+      <a href="{{ url('/register') }}">
+      <form class="space-y-4 bg-sky-50 p-6 rounded-xl shadow">
+        <input type="text" placeholder="Nama Lengkap" class="w-full p-3 rounded-lg border">
+        <input type="email" placeholder="Email" class="w-full p-3 rounded-lg border">
+        <input type="tel" placeholder="Nomor Telepon" class="w-full p-3 rounded-lg border">
+        {{-- <select class="w-full p-3 rounded-lg border">
+          <option>Pilih Kategori</option>
+          <option>Individu</option>
+          <option>Tim (max 7 orang)</option>
+        </select> --}}
+        <button class="px-6 py-3 bg-sky-700 text-white rounded-xl font-semibold hover:bg-sky-800">Kirim Pendaftaran</button>
+      </form>
+      </a>
     </div>
-    <div>{{ $Event->links() }}</div>
-    {{-- <x-card header="Welcome to the TallStackUI Starter Kit">
-        <div class="space-y-2">
-            <p>
-                👋🏻 This is the TallStackUI starter kit for Laravel 12. With this TallStackUI starter kit you will be able to enjoy a ready-to-use application to initialize your next Laravel 12 project with TallStackUI.
-            </p>
-            <div class="mt-4 space-y-2">
-                <i>
-                    "What this starter kit includes out of the box?"
-                </i>
-                <ul class="ml-2 mt-2 list-inside list-decimal font-semibold">
-                    <li>Laravel v12</li>
-                    <li>Livewire v3</li>
-                    <li>TallStackUI v2</li>
-                    <li>TailwindCSS v4</li>
-                </ul>
-                <p>And also:</p>
-                <ul class="ml-2 mt-2 list-inside list-decimal font-semibold">
-                    <li><a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">DebugBar</a></li>
-                    <li><a href="https://github.com/larastan/larastan" target="_blank">LaraStan</a></li>
-                    <li><a href="https://pestphp.com/" target="_blank">Pest</a></li>
-                    <li><a href="https://laravel.com/docs/pint" target="_blank">Pint</a></li>
-                </ul>
-            </div>
+  </section>
+
+  <!-- Panduan Lomba -->
+  <section id="panduan" class="max-w-6xl mx-auto py-16 px-4">
+    <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Panduan Lomba</h3>
+    <ul class="list-disc list-inside space-y-3 text-gray-700 max-w-3xl mx-auto">
+      <li>Lomba berlangsung di perairan laut Karimunjawa (ditentukan panitia).</li>
+      <li>Setiap kapal maksimal 4 orang peserta.</li>
+      <li>Peserta membawa perlengkapan pribadi (alat pancing, umpan, pelampung, perlindungan diri).</li>
+      <li>Peserta wajib hadir tepat waktu dan mematuhi peraturan panitia.</li>
+      <li>Total hadiah Rp. 150.000.000.</li>
+    </ul>
+  </section>
+
+  <!-- Galeri -->
+  <section id="galeri" class="bg-sky-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Galeri Karimunjawa</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=60" alt="Pantai Karimunjawa" class="rounded-xl shadow">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=60" alt="Laut Karimunjawa" class="rounded-xl shadow">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=600&q=60" alt="Sunset Karimunjawa" class="rounded-xl shadow">
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsor -->
+  <section id="sponsor" class="bg-gray-100 py-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-8 text-sky-700">Sponsor & Media Partner</h3>
+      <p class="text-gray-700 max-w-3xl mx-auto mb-8">Terima kasih kepada para sponsor yang mendukung Karimunjawa StrikeFest 2025. Kami membuka paket Platinum, Gold, Silver, dan Sponsor Pendukung untuk kerja sama promosi.</p>
+      <div class="overflow-hidden relative w-full">
+        <div class="sponsor-slider space-x-12">
+          <img src="{{ asset('/assets/images/PemrovJawaTengah.png') }}" alt="Pemprov Jawa Tengah" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/JatengNgopeniNglakoni.png') }}" alt="Ngopeni Nglakoni" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 1" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 2" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 3" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 4" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 5" class="h-20 object-contain">
+          <!-- Duplicate logos for seamless loop -->
+          <img src="{{ asset('/assets/images/PemrovJawaTengah.png') }}" alt="Pemprov Jawa Tengah" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/JatengNgopeniNglakoni.png') }}" alt="Ngopeni Nglakoni" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 1" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 2" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 3" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 4" class="h-20 object-contain">
+          <img src="{{ asset('/assets/images/OpenSponsorship.png') }}" alt="Sponsor 5" class="h-20 object-contain">
         </div>
-        <x-slot:footer>
-            <span class="text-xs">
-                ⚠️ <x-link href="https://tallstackui.com/docs/v2/starter-kit" bold blank sm>Make sure to read the docs about the starter kit!</x-link>
-            </span>
-        </x-slot:footer>
-    </x-card> --}}
-</x-app-layout>
+      </div>
+      <a href="#" class="mt-8 inline-block px-6 py-3 bg-amber-400 text-white font-semibold rounded-xl shadow hover:bg-amber-500">Ajukan Sponsorship</a>
+    </div>
+  </section>
+
+  <!-- Live Chat -->
+  <section id="chat" class="bg-sky-700 py-16 text-white text-center">
+    <h3 class="text-3xl font-bold mb-6">Live Chat</h3>
+    <p class="mb-4">Butuh bantuan atau informasi lebih lanjut? Hubungi kami melalui live chat di bawah ini.</p>
+    <a href="https://wa.me/6281234567890" target="_blank" class="px-6 py-3 bg-green-500 rounded-xl font-semibold hover:bg-green-600">Chat via WhatsApp</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-sky-900 text-white py-6 text-center">
+    <p>&copy; 2025 Karimunjawa StrikeFest | www.karimunjawastrikefest.com</p>
+  </footer>
+
+  <script>
+    // Countdown Timer
+    const countdown = document.getElementById('countdown');
+    const eventDate = new Date('Nov 14, 2025 00:00:00').getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      if (distance < 0) {
+        countdown.innerHTML = "Event Sedang Berlangsung!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `${days}h ${hours}j ${minutes}m ${seconds}d`;
+    }, 1000);
+  </script>
+</body>
+</html>

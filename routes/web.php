@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\IsAdmin;
 use App\Livewire\EventDetailPage;
+use App\Livewire\EventsPage;
 use App\Livewire\TicketPage;
 use App\Livewire\User\Profile;
 use App\Livewire\User\ProfileDataDiri;
@@ -13,8 +14,8 @@ use App\Livewire\Users\EditAlamat;
 use Illuminate\Support\Facades\Auth;
 
 Route::view('/', 'home')->name('home');
+Route::view('/events', 'events')->name('events');
 Route::get('/event/{slug}', EventDetailPage::class)->name('event');
-Route::view('/about', 'about')->name('about');
 
 Route::middleware(['auth'])->group(function () {
 
