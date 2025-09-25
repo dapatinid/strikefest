@@ -58,7 +58,7 @@
   <!-- Pendaftaran -->
   <section id="daftar" class="bg-white py-16">
     <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Formulir Pendaftaran</h3>
+      <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Daftar atau Login</h3>
       <div class="flex justify-center space-x-3">
           <a href="{{ url('/register') }}">
             <button class="px-6 py-3 bg-sky-700 text-white rounded-xl font-semibold hover:bg-sky-800">Kirim Pendaftaran</button>
