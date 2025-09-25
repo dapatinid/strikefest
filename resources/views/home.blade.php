@@ -26,11 +26,11 @@
       </div>
       <div class="hidden md:flex items-center gap-6 text-sm font-medium">
         <a href="#info" class="hover:text-sky-700">Informasi Event</a>
-        <a href="#daftar" class="hover:text-sky-700">Pendaftaran</a>
         <a href="#panduan" class="hover:text-sky-700">Panduan Lomba</a>
         <a href="#galeri" class="hover:text-sky-700">Galeri</a>
         <a href="#sponsor" class="hover:text-sky-700">Sponsor</a>
-        <a href="#chat" class="hover:text-sky-700">Live Chat</a>
+        <a href="https://wa.me/6281325171106" class="hover:text-sky-700">Live Chat</a>
+        <a href="/login" class="font-bold px-3 py-1 rounded-xl bg-blue-300 hover:text-sky-700">LOGIN</a>
       </div>
     </nav>
   </header>
@@ -59,19 +59,14 @@
   <section id="daftar" class="bg-white py-16">
     <div class="max-w-4xl mx-auto px-4">
       <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Formulir Pendaftaran</h3>
-      <a href="{{ url('/register') }}">
-      <form class="space-y-4 bg-sky-50 p-6 rounded-xl shadow">
-        <input type="text" placeholder="Nama Lengkap" class="w-full p-3 rounded-lg border">
-        <input type="email" placeholder="Email" class="w-full p-3 rounded-lg border">
-        <input type="tel" placeholder="Nomor Telepon" class="w-full p-3 rounded-lg border">
-        {{-- <select class="w-full p-3 rounded-lg border">
-          <option>Pilih Kategori</option>
-          <option>Individu</option>
-          <option>Tim (max 7 orang)</option>
-        </select> --}}
-        <button class="px-6 py-3 bg-sky-700 text-white rounded-xl font-semibold hover:bg-sky-800">Kirim Pendaftaran</button>
-      </form>
-      </a>
+      <div class="flex justify-center space-x-3">
+          <a href="{{ url('/register') }}">
+            <button class="px-6 py-3 bg-sky-700 text-white rounded-xl font-semibold hover:bg-sky-800">Kirim Pendaftaran</button>
+          </a>
+          <a href="{{ url('/login') }}">
+            <button class="px-6 py-3 bg-sky-500 text-white rounded-xl font-semibold hover:bg-sky-800">Login & Cek Tiket</button>
+          </a>
+      </div>
     </div>
   </section>
 
@@ -131,7 +126,7 @@
   <section id="chat" class="bg-sky-700 py-16 text-white text-center">
     <h3 class="text-3xl font-bold mb-6">Live Chat</h3>
     <p class="mb-4">Butuh bantuan atau informasi lebih lanjut? Hubungi kami melalui live chat di bawah ini.</p>
-    <a href="https://wa.me/6281234567890" target="_blank" class="px-6 py-3 bg-green-500 rounded-xl font-semibold hover:bg-green-600">Chat via WhatsApp</a>
+    <a href="https://wa.me/6281325171106" target="_blank" class="px-6 py-3 bg-green-500 rounded-xl font-semibold hover:bg-green-600">Chat via WhatsApp</a>
   </section>
 
   <!-- Footer -->
