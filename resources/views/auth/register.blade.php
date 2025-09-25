@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="my-6 flex items-center justify-center">
-        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" />
+        <img src="{{ asset('/assets/images/LogoStrikefest2025.png') }}" class="size-56"/>
         {{-- STRIKEFEST 2025 --}}
     </div>
 

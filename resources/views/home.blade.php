@@ -30,7 +30,12 @@
         <a href="#galeri" class="hover:text-sky-700">Galeri</a>
         <a href="#sponsor" class="hover:text-sky-700">Sponsor</a>
         <a href="https://wa.me/6281325171106" class="hover:text-sky-700">Live Chat</a>
-        <a href="/login" class="font-bold px-3 py-1 rounded-xl bg-blue-300 hover:text-sky-700">LOGIN</a>
+        @guest            
+        <a href="/login" class="font-bold px-3 py-1 rounded-md bg-blue-300 hover:text-sky-700">LOGIN</a>
+        @endguest
+        @auth
+        <a href="/ticket" class="font-bold px-3 py-1 rounded-md bg-blue-300 hover:text-sky-700">TIKET</a>    
+        @endauth
       </div>
     </nav>
   </header>
@@ -63,9 +68,16 @@
           <a href="{{ url('/register') }}">
             <button class="px-6 py-3 bg-sky-700 text-white rounded-xl font-semibold hover:bg-sky-800">Kirim Pendaftaran</button>
           </a>
+          @guest              
           <a href="{{ url('/login') }}">
             <button class="px-6 py-3 bg-sky-500 text-white rounded-xl font-semibold hover:bg-sky-800">Login & Cek Tiket</button>
           </a>
+          @endguest
+          @auth              
+          <a href="{{ url('/ticket') }}">
+            <button class="px-6 py-3 bg-sky-500 text-white rounded-xl font-semibold hover:bg-sky-800">Cek Status Ticket</button>
+          </a>
+          @endauth
       </div>
     </div>
   </section>
