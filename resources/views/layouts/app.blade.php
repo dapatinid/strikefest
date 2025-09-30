@@ -7,7 +7,7 @@
 
         {{-- <title>{{ config('app.name', 'Acara') }}</title> --}}
         {{-- <title>{{ $title ?? 'StrikeFest' }}</title> --}}
-        <title>{{ $title ?? App\Models\Setting::get()->first()->website_name }}</title>
+        <title>{{ $title ?? (App\Models\Setting::get()->first()->website_name ?? 'StrikeFest')  }}</title>
                 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
