@@ -7,6 +7,7 @@ use App\Models\District;
 use App\Models\Province;
 use App\Models\Village;
 use Filament\Actions\Action;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -125,6 +126,32 @@ class UserForm
                     ->maxSize(4000)
                     ->disk('public')
                     ->directory('image_id'),
+                TextInput::make('no_id')
+                    ->required(),
+
+                TextInput::make('tempat_lahir')
+                    ->required(),
+                DatePicker::make('tanggal_lahir')
+                    ->required(),
+                Select::make('gender')
+                        ->options([
+                                    'L' => 'Laki - Laki',
+                                    'P' => 'Perempuan',
+                                ])
+                        ->required(),
+                Select::make('ukuran_jersey')
+                    ->options([
+                                'S' => 'S',
+                                'M' => 'M',
+                                'L' => 'L',
+                                'XL' => 'XL',
+                                'XXL' => 'XXL',
+                                'XXXL' => 'XXXL',
+                            ])
+                    ->required(),
+                TextInput::make('klub')
+                    ->required(),
+
 
                 TextInput::make('poin')
                     ->required()

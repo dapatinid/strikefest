@@ -1,4 +1,4 @@
-<div @updated="$dispatch('name-updated', { name: $event.detail.name })" class="space-y-3">
+<div @updated="$dispatch('name-updated', { name: $event.detail.name })" class="space-y-3 p-3">
     <x-card :header="__('Edit Akun')" color="primary">
         <form id="update-profile" wire:submit="save">
             <div class="space-y-6">

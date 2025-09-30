@@ -1,10 +1,13 @@
 <x-app-layout>
+    <div class="p-3">
     @php
     $Event = App\Models\Event::orderby('date_from')->paginate(10);
-    foreach ( $Event as $e) {
+    $Gallery = App\Models\Gallery::query()->where('is_active',true)->where('target','gallery')->get();
+        // dd($Gallery);
+    foreach ( $Gallery as $img) {
         $imgs[] = [
-            'src' => Str::replace('%2F', '/',url('storage', $e->cover)),
-            'alt' => 'Event',
+            'src' => Str::replace('%2F', '/',url('storage', $img->image)),
+            'alt' => 'Gallery',
         ];
     }
     // dd($imgs);
@@ -80,4 +83,5 @@
             </span>
         </x-slot:footer>
     </x-card> --}}
+    </div>
 </x-app-layout>

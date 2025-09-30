@@ -1,4 +1,4 @@
-<div class="space-y-3">
+<div class="space-y-3 p-3">
     @forelse ($event as $evt)
     <a wire:navigate.hover href="/event/{{ $evt->slug }}" class="flex flex-nowrap cursor-pointer" >
         <div class="dark:text-white bg-white dark:bg-zinc-800 p-3 w-full block"  style="mask: radial-gradient(10px at 20px 20px, transparent 98%, black) -20px -20px;">
@@ -34,7 +34,7 @@
         </div>
     </a>
     @empty
-        Kosong
+        <span class="flex justify-center">Kosong, anda belum mendaftar event.</span>
     @endforelse
     <div>{{ $event->links() }}</div>
 </div>

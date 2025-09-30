@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-lg">
+<div class="mx-auto max-w-lg p-3">
     <div class="grid grid-cols-1 gap-3">
 
     <x-card color="primary">

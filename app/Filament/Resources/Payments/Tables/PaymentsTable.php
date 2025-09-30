@@ -19,6 +19,7 @@ class PaymentsTable
     {
         return $table
             ->columns([
+                TextColumn::make('date_payment')->sortable(),
                 TextColumn::make('notes')
                     ->searchable(),
                 TextColumn::make('payment_method')
@@ -40,12 +41,19 @@ class PaymentsTable
             //     ViewAction::make(),
             //     EditAction::make(),
             // ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
-            ]);
+            // ->toolbarActions([
+            //     BulkActionGroup::make([
+            //         DeleteBulkAction::make(),
+            //         ForceDeleteBulkAction::make(),
+            //         RestoreBulkAction::make(),
+            //     ]),
+            // ])
+            ->recordUrl(function ($record) {
+                if ($record->paymentable_type === 'App\Models\Event') {
+                    return url("/copanel/events/{$record->paymentable_id}/payments?search={$record->user->name}");
+                } else {
+                    return null;
+                }
+            });
     }
 }

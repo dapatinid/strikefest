@@ -6,7 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- <title>{{ config('app.name', 'Acara') }}</title> --}}
-        <title>{{ $title ?? 'StrikeFest' }}</title>
+        {{-- <title>{{ $title ?? 'StrikeFest' }}</title> --}}
+        <title>{{ $title ?? App\Models\Setting::get()->first()->website_name }}</title>
                 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
@@ -23,6 +24,15 @@
                     /* border-radius: calc(infinity * 1px); */
                     }
             </style>
+            <style>
+                .glass { background: rgba(255,255,255,0.3); backdrop-filter: blur(8px);} 
+                .hero-bg { background-size: cover; background-position: center; }
+                .sponsor-slider { display: flex; animation: scroll 20s linear infinite; }
+                @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+                }
+            </style>
     </head>
     <body class="font-sans antialiased"
           x-cloak
@@ -34,11 +44,11 @@
             <x-dialog />
             <x-toast />
         </x-slot:top>
-        <x-slot:header>
-            <x-layout.header without-mobile-button>
+        <x-slot:header >
+            <x-layout.header without-mobile-button class="{{ request()->is('/') ? 'hidden' : 'fixed' }}">
                 <x-slot:left>
                     <!-- Opening -->
-                    @if (request()->is('/'))
+                    @if (request()->is('/') || request()->is('events') || request()->is('ticket'))
                         <button x-on:click="$dispatch('tallstackui-menu-mobile', { status : true })" class="md:hidden flex cursor-pointer">
                             <x-icon name="bars-3" class="size-6 text-primary-600"/>
                         </button>
@@ -169,7 +179,7 @@
                 </x-slot:right>
             </x-layout.header>
         </x-slot:header>
-        <x-slot:menu>
+        <x-slot:menu >
             <x-side-bar smart collapsible navigate-hover >
                 <x-slot:brand>
                     <div class="mt-5 flex items-center justify-center">
@@ -180,7 +190,7 @@
                 <x-side-bar.item text="Events" icon="calendar-days" :route="route('events')" />
 
                 @auth       
-                <x-side-bar.item icon="ticket" text="Ticket"   :route="route('ticket')" />
+                <x-side-bar.item icon="ticket" text="Ticket"  badge="{{ App\Models\Event::whereHas('participants', function ($query) {$query->where('user_id', Auth::user()->id);})->count() }}"  :route="route('ticket')" />
                 @if (auth()->user()->is_admin == true)
                     
                 <x-side-bar.item icon="users" text="Users" badge="{{ App\Models\User::query()->whereNotIn('id', [Auth::id()])->count() }}"  :route="route('users.index')" />
@@ -188,7 +198,7 @@
                 @endif
                 @endauth
 
-                <x-side-bar.item text="Chat Whatapps" icon="chat-bubble-bottom-center-text" href="https://wa.me/6281325171106" target="_blank"/>
+                <x-side-bar.item text="Chat Whatapps" icon="chat-bubble-bottom-center-text" href="https://wa.me/62{{ App\Models\Setting::get()->first()->phone ?? 0 }}" target="_blank"/>
                 {{-- <x-side-bar.item text="Tentang" icon="information-circle" :route="route('about')" /> --}}
             </x-side-bar>
         </x-slot:menu>

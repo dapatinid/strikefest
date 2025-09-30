@@ -1,4 +1,4 @@
-<div class="space-y-5 pb-10">
+<div class="space-y-5 pb-10 p-3">
     <x-card>
         @if (isset($event->cover) )                
         <a href="{{ Str::replace('%2F', '/',url('storage', $event->cover)) }}" target="_blank">
@@ -74,11 +74,11 @@
         <tbody>
             @foreach ($listPembayaran as $py)                    
             <tr>
-            <td class="px-4 py-2 border-b border-gray-300 text-center">{{ Carbon\Carbon::parse($py->date_payment)->translatedFormat('Y-M-d H:i') }}</td>
-            <td class="px-4 py-2 border-b border-gray-300">{{ $py->notes }}</td>
-            <td class="px-4 {{ isset($py->image) ? 'py-2' : 'py-5' }} border-b border-gray-300 flex justify-center"><img src="{{ isset($py->image) ? Str::replace('%2F', '/',url('storage', $py->image)) : '...' }}" alt="..." class="{{ isset($py->image) ? '' : 'hidden' }} size-10"></td>
-            <td class="px-4 py-2 border-b border-gray-300">{{ $py->payment_method }}</td>
-            <td class="px-4 py-2 border-b border-gray-300 text-end">Rp{{ Number::format($py->nominal, locale: 'de') }}</td>
+            <td class="px-4 h-20 border-b border-gray-300 text-center">{{ Carbon\Carbon::parse($py->date_payment)->translatedFormat('Y-M-d H:i') }}</td>
+            <td class="px-4 h-20 border-b border-gray-300">{{ $py->notes }}</td>
+            <td class="px-4 h-20 border-b border-gray-300 flex justify-center items-center"><img src="{{ isset($py->image) ? Str::replace('%2F', '/',url('storage', $py->image)) : Str::replace('%2F', '/', url('/assets/images/stempel-kosong.png')) }}" alt="..." class=" size-10"></td>
+            <td class="px-4 h-20 border-b border-gray-300">{{ $py->payment_method }}</td>
+            <td class="px-4 h-20 border-b border-gray-300 text-end">Rp{{ Number::format($py->nominal, locale: 'de') }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -142,7 +142,7 @@
                 <x-input label="Nama Kontak Darurat" wire:model="name_emergency" required />
             </div>
             <div>
-                <x-input label="Hubungan dengan Peserta" wire:model="relation_emergency" required hint="istri / kakak / adik / orang tua / yang lain"/>
+                <x-input label="Hubungan dengan Peserta" wire:model="relation_emergency" required hint="istri / kakak / adik / orang tua / teman / yang lain"/>
             </div>
             <div>
                 <x-input label="Nomor Kontak Darurat" wire:model="phone_emergency" required placeholder="Usahakan No. Whatsapp" />
