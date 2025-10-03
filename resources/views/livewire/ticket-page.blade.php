@@ -5,8 +5,9 @@
                 <div class="font-bold">
                     {{ $evt->title }}
                 </div>
-                <div>
-                    {{ $evt->subtitle }}
+                <div class="flex justify-between">
+                    <span>{{ $evt->subtitle }} </span> 
+                    <span class="font-bold text-end">{{ empty(App\Models\User::find($evt->participants->value('team'))->klub) ? '' : 'Team : '. App\Models\User::find($evt->participants->value('team'))->klub }}<span>
                 </div>
                 <div class="flex justify-between mt-1">
                     @if ($evt->payments->where('user_id',Auth::user()->id)->sum('nominal') >= $evt->price)

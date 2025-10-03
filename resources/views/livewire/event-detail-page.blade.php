@@ -47,7 +47,16 @@
     </x-card>
 
     @auth
-        
+    
+    @if (!empty($event->participants->value('team')))        
+    <x-alert color="neutral" class="block">
+        <div class="font-bold">{{ "TEAM : " . App\Models\User::find($event->participants->value('team'))->klub }}</div>
+        @foreach (App\Models\Participant::where('team',$event->participants->value('team'))->get() as $team_list)
+            <div>{{ App\Models\User::find($team_list->user_id)->name }}</div>
+        @endforeach
+    </x-alert>
+    @endif
+    
     @if ($event->payments->where('user_id',Auth::user()->id)->sum('nominal') >= $event->price)      
         <x-alert color="indigo" icon="light-bulb">
             @lang('Lunas')
@@ -130,6 +139,19 @@
         FORMULIR PENDAFTARAN
     </div>
     <form id="daftar-event-{{ $event->id }}" wire:submit="daftar_event" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <x-card class="space-y-3">
+          <x-slot:header>
+            <div class="p-4 font-bold">
+                Nama Tim <br>
+                <span class="text-xs font-medium">Abaikan kolom ini jika pendaftar perorangan.</span>
+            </div>
+          </x-slot:header>
+
+            <div>
+                <x-select.styled label="Team" wire:model="team" :options="$daftar_klub" searchable/>
+            </div>
+        
+    </x-card>
     <x-card class="space-y-3">
           <x-slot:header>
             <div class="p-4 font-bold">

@@ -6,6 +6,7 @@ use App\Livewire\Traits\Alert;
 use App\Models\Event;
 use App\Models\Participant;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
@@ -25,6 +26,7 @@ class EventDetailPage extends Component
     // public Event $event; // Jangan dipake, crash ini.
     public $id;
 
+    public $team;
     public $name_emergency;
     public $relation_emergency;
     public $phone_emergency;
@@ -100,8 +102,16 @@ class EventDetailPage extends Component
     #[Title('Event Detail')]
     public function render()
     {
+        $daftar_klub = User::query()
+            ->orderBy('klub')->whereNotNull('klub')->get()
+            ->map(fn(User $daftar_klub): array => [
+                'label' => $daftar_klub->klub. " ~ ketua : $daftar_klub->name",
+                'value' => $daftar_klub->id,
+            ]);
         return view('livewire.event-detail-page', [
             'event' => Event::find($this->id),
+            'daftar_klub' => $daftar_klub,
+
         ])
             // ->title(Event::find($this->id)->title) // custom title
         ;
@@ -241,6 +251,7 @@ class EventDetailPage extends Component
             $peserta = new Participant();
             $peserta->participantable_id = $this->id;
             $peserta->participantable_type = Event::class;
+            $peserta->team = $this->team;
             $peserta->name_emergency = $this->name_emergency;
             $peserta->relation_emergency = $this->relation_emergency;
             $peserta->phone_emergency = $this->phone_emergency;

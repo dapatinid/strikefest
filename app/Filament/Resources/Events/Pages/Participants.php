@@ -21,6 +21,7 @@ use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -35,6 +36,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -58,6 +60,15 @@ class Participants extends ManageRelatedRecords
                     ->searchable()
                     ->preload()
                     ->required(),
+                Select::make('team')
+                    ->label('Tim')
+                    ->searchable()
+                    ->preload()
+                ->relationship(
+                    name: 'user',
+                    modifyQueryUsing: fn(Builder $query) => $query->orderBy('klub')->whereNotNull('klub'),
+                )
+                ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->klub} ~ ketua : {$record->name}"),
                 TextInput::make('name_emergency')
                     ->label('Nama Darurat Utk Dihubungi')
                     ->required(),
@@ -67,7 +78,8 @@ class Participants extends ManageRelatedRecords
                 TextInput::make('phone_emergency')
                     ->label('Kontak HP / WA Darurat')
                     ->required()
-                    ->tel(),
+                    ->tel()
+                    ->columnSpanFull(),
 
                 CheckboxList::make('health_verification')
                     ->options([
@@ -116,6 +128,10 @@ class Participants extends ManageRelatedRecords
             ->columns([
                 TextColumn::make('user.name')
                     ->searchable(),
+                TextColumn::make('team')
+                ->formatStateUsing(fn ($state) => "ID Team : " . $state . " | Nama Team : " .User::find($state)->klub)
+                    ->sortable()
+                    ->searchable(isIndividual:true),
                 TextColumn::make('name_emergency')
                     ->searchable(),
                 TextColumn::make('relation_emergency')

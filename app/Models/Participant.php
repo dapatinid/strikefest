@@ -15,6 +15,7 @@ class Participant extends Model
         'participantable_id',
         'participantable_type',
 
+        'team',
         'name_emergency',
         'relation_emergency',
         'phone_emergency',
@@ -40,6 +41,12 @@ class Participant extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function team()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function userCre(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
