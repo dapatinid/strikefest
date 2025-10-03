@@ -1,5 +1,5 @@
 <div @updated="$dispatch('name-updated', { name: $event.detail.name })" class="space-y-3 p-3 mx-auto max-w-lg">
-    <div class="{{ Auth::user()->image == null || Auth::user()->gender == null || Auth::user()->tempat_lahir == null || Auth::user()->tanggal_lahir == null || Auth::user()->image_id == null || Auth::user()->no_id == null || Auth::user()->ukuran_jersey == null || Auth::user()->klub == null ? '' : 'hidden' }}">
+    <div class="{{ Auth::user()->image == null || Auth::user()->gender == null || Auth::user()->tempat_lahir == null || Auth::user()->tanggal_lahir == null || Auth::user()->image_id == null || Auth::user()->no_id == null || Auth::user()->ukuran_jersey == null  ? '' : 'hidden' }}">
         <x-alert color="amber" icon="light-bulb" close >
             @lang('Lengkapi data di bawah ini. Data tidak lengkap tidak diizinkan mengikuti Event.')
         </x-alert>
@@ -63,7 +63,7 @@
                     ]" />
                 </div>
                 <div>
-                    <x-input label="{{ __('Komunitas Mancing') }} *" wire:model="user.klub" required />
+                    <x-input label="{{ __('Komunitas Mancing') }}" wire:model="user.klub" hint="khusus diisi oleh Ketua" required />
                 </div>
 
             </div>

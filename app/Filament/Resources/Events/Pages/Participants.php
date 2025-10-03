@@ -64,11 +64,11 @@ class Participants extends ManageRelatedRecords
                     ->label('Tim')
                     ->searchable()
                     ->preload()
-                ->relationship(
-                    name: 'user',
-                    modifyQueryUsing: fn(Builder $query) => $query->orderBy('klub')->whereNotNull('klub'),
-                )
-                ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->klub} ~ ketua : {$record->name}"),
+                    ->relationship(
+                        name: 'user',
+                        modifyQueryUsing: fn(Builder $query) => $query->orderBy('klub')->whereNotNull('klub'),
+                    )
+                    ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->klub} ~ ketua : {$record->name}"),
                 TextInput::make('name_emergency')
                     ->label('Nama Darurat Utk Dihubungi')
                     ->required(),
@@ -128,10 +128,15 @@ class Participants extends ManageRelatedRecords
             ->columns([
                 TextColumn::make('user.name')
                     ->searchable(),
-                TextColumn::make('team')
-                ->formatStateUsing(fn ($state) => "ID Team : " . $state . " | Nama Team : " .User::find($state)->klub)
-                    ->sortable()
-                    ->searchable(isIndividual:true),
+                TextColumn::make('userTeam.klub')
+                ->label('Nama Tim')
+                ->searchable(),
+                // ->formatStateUsing(fn ($state) => "ID Team : " . $state . " | Nama Team : " .User::find($state)->klub)
+                //     ->sortable()
+                //     ->searchable(query: function (Builder $query, string $search): Builder {
+                //         return $query
+                //             ->where('team', 'like', "%{$search}%");
+                //     }),
                 TextColumn::make('name_emergency')
                     ->searchable(),
                 TextColumn::make('relation_emergency')

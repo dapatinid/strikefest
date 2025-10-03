@@ -90,7 +90,7 @@ class EventDetailPage extends Component
         if (Auth::check()) {
             if (Auth::user()->street == null || Auth::user()->village == null || Auth::user()->district == null || Auth::user()->city == null || Auth::user()->state == null) {
                 return redirect()->intended(route('user.profilealamat', absolute: false));
-            } elseif (Auth::user()->image == null || Auth::user()->gender == null || Auth::user()->tempat_lahir == null || Auth::user()->tanggal_lahir == null || Auth::user()->image_id == null || Auth::user()->no_id == null || Auth::user()->ukuran_jersey == null || Auth::user()->klub == null) {
+            } elseif (Auth::user()->image == null || Auth::user()->gender == null || Auth::user()->tempat_lahir == null || Auth::user()->tanggal_lahir == null || Auth::user()->image_id == null || Auth::user()->no_id == null || Auth::user()->ukuran_jersey == null) {
                 return redirect()->intended(route('user.profiledatadiri', absolute: false));
             } else {
                 $slug;

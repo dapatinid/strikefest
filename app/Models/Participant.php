@@ -39,12 +39,12 @@ class Participant extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     
-    public function team()
+    public function userTeam()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'team');
     }
 
     public function userCre(): BelongsTo

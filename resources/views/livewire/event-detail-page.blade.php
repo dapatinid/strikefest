@@ -100,7 +100,11 @@
                     Pembayaran
                 </div>
             </x-slot:header>
-
+                <div class="justify-center gap-2 font-bold flex flex-wrap">
+                    <span>Pembayaran ke</span>
+                    <span>CV. CAHYA SEMERU</span>
+                    <span>BRI 008301004142301</span>
+                </div>
                 <div>
                         @if ($image) 
                         {{-- <span>{{ $image->getFilename() }}</span> --}}
@@ -247,6 +251,11 @@
                 <span class="text-xs font-medium">Abaikan jika pembayaran dilakukan nanti.</span>
             </div>
           </x-slot:header>
+            <div class="justify-center gap-2 font-bold flex flex-wrap">
+                <span>Pembayaran ke</span>
+                <span>CV. CAHYA SEMERU</span>
+                <span>BRI 008301004142301</span>
+            </div>
             <div>
                     @if ($image) 
                     {{-- <span>{{ $image->getFilename() }}</span> --}}
