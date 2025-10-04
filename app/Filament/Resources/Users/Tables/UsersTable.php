@@ -43,14 +43,14 @@ class UsersTable
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
-                // TextColumn::make('village')
-                //     ->searchable(),
-                // TextColumn::make('district')
-                //     ->searchable(),
-                // TextColumn::make('city')
-                //     ->searchable(),
-                // TextColumn::make('state')
-                //     ->searchable(),
+                TextColumn::make('desa.name')
+                    ->searchable(),
+                TextColumn::make('kec.name')
+                    ->searchable(),
+                TextColumn::make('kabkota.name')
+                    ->searchable(),
+                TextColumn::make('prov.name')
+                    ->searchable(),
                 // TextColumn::make('zip_code')
                 //     ->searchable(),
                 // TextColumn::make('poin')

@@ -57,6 +57,23 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         ];
     }
 
+    public function prov()
+    {
+        return $this->hasOne(Province::class, 'code', 'state');
+    }
+    public function kabkota()
+    {
+        return $this->hasOne(City::class, 'code', 'city');
+    }
+    public function kec()
+    {
+        return $this->hasOne(District::class, 'code', 'district');
+    }
+    public function desa()
+    {
+        return $this->hasOne(Village::class, 'code', 'village');
+    }
+
     // fungsi agar tidak dapat masuk ke /admin panel
     public function canAccessPanel(Panel $panel): bool
     {
