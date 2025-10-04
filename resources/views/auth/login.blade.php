@@ -17,16 +17,23 @@
             <x-checkbox label="Remember me" id="remember_me" type="checkbox" name="remember" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('register'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('register') }}">
-                    {{ __('Daftar') }}
-                </a>
-            @endif
+        <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center justify-start">
+                    <a href="https://wa.me/62081325171106?text=Mohon%20bantu%20saya%2C%20saya%20telah%20lupa%20password.%0ANama%20%3A%0Aemail%20%3A" 
+                    {{-- href="https://wa.me/62{{ App\Models\Setting::get()->first()->phone ?? 0 }}"  --}}
+                        target="_blank">Lupa Password?</a>
+                </div>
+                <div class="flex items-center justify-end">
+                    @if (Route::has('register'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('register') }}">
+                            {{ __('Daftar') }}
+                        </a>
+                    @endif
 
-            <x-button type="submit" class="ms-3">
-                {{ __('Masuk') }}
-            </x-button>
+                    <x-button type="submit" class="ms-3">
+                        {{ __('Masuk') }}
+                    </x-button>
+                </div>
         </div>
     </form>
 </x-guest-layout>

@@ -18,10 +18,16 @@ class SettingsTable
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
-                // TextColumn::make('info_event')
-                //     ->searchable(),
-                // TextColumn::make('panduan_lomba')
-                //     ->searchable(),
+                TextColumn::make('info_event')
+                    ->markdown()
+                    ->lineClamp(2)
+                    ->wrap()
+                    ->searchable(),
+                TextColumn::make('panduan_lomba')
+                    ->markdown()
+                    ->lineClamp(2)
+                    ->wrap()
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
