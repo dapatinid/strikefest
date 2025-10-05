@@ -149,8 +149,7 @@ class UserForm
                                 'XXXL' => 'XXXL',
                             ])
                     ->required(),
-                TextInput::make('klub')
-                    ->required(),
+                TextInput::make('klub'),
 
 
                 TextInput::make('poin')

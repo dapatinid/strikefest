@@ -33,7 +33,9 @@ class Index extends Component
 
     public array $headers = [
         ['index' => 'id', 'label' => '#'],
+        ['index' => 'image', 'label' => 'Photo'],
         ['index' => 'name', 'label' => 'Name'],
+        ['index' => 'phone', 'label' => 'Phone'],
         ['index' => 'email', 'label' => 'E-mail'],
         ['index' => 'created_at', 'label' => 'Created'],
         ['index' => 'action', 'sortable' => false],

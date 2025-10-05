@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Users\Index;
 use App\Livewire\Users\Edit;
 use App\Livewire\Users\EditAlamat;
+use App\Livewire\Users\EditDataDiri;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', HomePage::class)->name('home');
@@ -30,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users', Index::class)->name('users.index');
         Route::get('/users/{userid}/edit', Edit::class)->name('users.edit');
         Route::get('/users/{userid}/edit-alamat', EditAlamat::class)->name('users.editalamat');
+        Route::get('/users/{userid}/edit-data-diri', EditDataDiri::class)->name('users.editdatadiri');
     });
 });
 

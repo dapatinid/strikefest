@@ -1,10 +1,5 @@
-<div @updated="$dispatch('name-updated', { name: $event.detail.name })" class="space-y-3 p-3 mx-auto max-w-lg">
-    <div class="{{ Auth::user()->image == null || Auth::user()->gender == null || Auth::user()->tempat_lahir == null || Auth::user()->tanggal_lahir == null || Auth::user()->image_id == null || Auth::user()->no_id == null || Auth::user()->ukuran_jersey == null  ? '' : 'hidden' }}">
-        <x-alert color="amber" icon="light-bulb" close >
-            @lang('Lengkapi data di bawah ini. Data tidak lengkap tidak diizinkan mengikuti Event.')
-        </x-alert>
-    </div>
-    <x-card :header="__('Edit Data Diri')" color="primary">
+<div class="mx-auto max-w-lg p-3">
+   <x-card :header="__('Edit Data Diri :nama', ['nama' => $user?->name])" color="primary">
         <form id="update-profile-data-diri" wire:submit="save_data_diri">
             <div class="space-y-6">
                 <div>
@@ -79,4 +74,5 @@
             </x-button>
         </x-slot:footer>
     </x-card>
+
 </div>
