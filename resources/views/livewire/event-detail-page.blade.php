@@ -58,7 +58,7 @@
     @if ($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id)->count() > 0)        
     <x-alert color="neutral" class="block">
         <div class="font-bold">{{ "TEAM : " . App\Models\User::find($event->participants->value('team'))->klub }}</div>
-        @foreach (App\Models\Participant::where('team',$event->participants->value('team'))->get() as $team_list)
+        @foreach ($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id) as $team_list)
             <div>{{ App\Models\User::find($team_list->user_id)->name }}</div>
         @endforeach
     </x-alert>
