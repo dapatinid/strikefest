@@ -67,7 +67,7 @@ class ProfileDataDiri extends Component
                 'required',
             ],
             'user.klub' => [
-                // 'required',
+                'nullable',
                 'string',
                 'max:255'
             ],
