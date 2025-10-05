@@ -108,9 +108,11 @@ class EventDetailPage extends Component
                 'label' => $daftar_klub->klub. " ~ ketua : $daftar_klub->name",
                 'value' => $daftar_klub->id,
             ]);
+            $partisipan = Participant::where('user_id', Auth::user()->id);
         return view('livewire.event-detail-page', [
             'event' => Event::find($this->id),
             'daftar_klub' => $daftar_klub,
+            'partisipan' => $partisipan,
 
         ])
             // ->title(Event::find($this->id)->title) // custom title

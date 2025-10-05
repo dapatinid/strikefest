@@ -48,7 +48,14 @@
 
     @auth
     
-    @if (!empty($event->participants->value('team')))        
+
+    @php
+        // dd($event->participants->where('participantable_id',$event->id));
+        // $partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id)->count() > 0
+        // dd($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id));
+    @endphp
+
+    @if ($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id)->count() > 0)        
     <x-alert color="neutral" class="block">
         <div class="font-bold">{{ "TEAM : " . App\Models\User::find($event->participants->value('team'))->klub }}</div>
         @foreach (App\Models\Participant::where('team',$event->participants->value('team'))->get() as $team_list)
