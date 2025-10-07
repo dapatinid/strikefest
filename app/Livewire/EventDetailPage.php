@@ -103,7 +103,7 @@ class EventDetailPage extends Component
     public function render()
     {
         $daftar_klub = User::query()
-            ->orderBy('klub')->whereNotNull('klub')->get()
+            ->orderBy('klub')->whereNotNull('klub')->whereNot('klub','')->get()
             ->map(fn(User $daftar_klub): array => [
                 'label' => $daftar_klub->klub. " ~ ketua : $daftar_klub->name",
                 'value' => $daftar_klub->id,
