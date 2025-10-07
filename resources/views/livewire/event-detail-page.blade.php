@@ -46,9 +46,9 @@
         </div> 
     </x-card>
 
-    <hr class="border-2">
-
+    
     @auth
+    <hr class="border-2">
 
     @if ($partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$event->id)->count() > 0 && $event->participants->value('team') != null )        
     <x-alert color="neutral" class="block">
@@ -83,9 +83,9 @@
             </x-button>
         </div>
 
+        <hr class="border-2">
     @endif
 
-    <hr class="border-2">
     
     @if ($event->payments->where('user_id',Auth::user()->id)->sum('nominal') >= $event->price)      
         <x-alert color="indigo" icon="light-bulb">
