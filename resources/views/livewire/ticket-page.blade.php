@@ -7,7 +7,11 @@
                 </div>
                 <div class="flex justify-between">
                     <span>{{ $evt->subtitle }} </span> 
-                    <span class="font-bold text-end">{{ empty(App\Models\User::find($evt->participants->value('team'))->klub) ? '' : 'Team : '. App\Models\User::find($evt->participants->value('team'))->klub }}<span>
+                    @php
+                        $userTim = $partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$evt->id)->value('team');
+                        $namaKlub = $userTim != null ? App\Models\User::find($userTim)->klub :'' ;
+                    @endphp
+                    <span class="font-bold text-end">{{ $namaKlub }}<span>
                 </div>
                 <div class="flex justify-between mt-1">
                     @if ($evt->payments->where('user_id',Auth::user()->id)->sum('nominal') >= $evt->price)

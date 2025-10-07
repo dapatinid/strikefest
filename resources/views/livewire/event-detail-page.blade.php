@@ -53,10 +53,11 @@
     @if ($partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$event->id)->count() > 0 && $event->participants->value('team') != null )        
     <x-alert color="neutral" class="block">
         @php
-            $namaKlub = ($event->participants->value('team')) != null ? App\Models\User::find($event->participants->value('team'))->klub :'' ;
+            $userTim = $partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$event->id)->value('team');
+            $namaKlub = $userTim != null ? App\Models\User::find($userTim)->klub :'' ;
         @endphp
         <div class="font-bold">{{ "My Team / Club : " . $namaKlub }}</div>
-        @foreach ($partisipan->where('participantable_id',$event->id)->where('team',$event->participants->value('team')) as $team_list)
+        @foreach ($partisipan->where('participantable_id',$event->id)->where('team',$userTim) as $team_list)
             <div>{{ App\Models\User::find($team_list->user_id)->name }}</div>
         @endforeach
     </x-alert>
