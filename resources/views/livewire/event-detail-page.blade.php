@@ -46,23 +46,46 @@
         </div> 
     </x-card>
 
+    <hr class="border-2">
+
     @auth
-    
 
-    @php
-        // dd($event->participants->where('participantable_id',$event->id));
-        // $partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id)->count() > 0
-        // dd($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id));
-    @endphp
-
-    @if ($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id)->count() > 0)        
+    @if ($partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$event->id)->count() > 0 && $event->participants->value('team') != null )        
     <x-alert color="neutral" class="block">
-        <div class="font-bold">{{ "TEAM : " . App\Models\User::find($event->participants->value('team'))->klub }}</div>
-        @foreach ($partisipan->where('participantable_id',$event->id)->get()->where('user_id',Auth::user()->id) as $team_list)
+        @php
+            $namaKlub = ($event->participants->value('team')) != null ? App\Models\User::find($event->participants->value('team'))->klub :'' ;
+        @endphp
+        <div class="font-bold">{{ "My Team / Club : " . $namaKlub }}</div>
+        @foreach ($partisipan->where('participantable_id',$event->id)->where('team',$event->participants->value('team')) as $team_list)
             <div>{{ App\Models\User::find($team_list->user_id)->name }}</div>
         @endforeach
     </x-alert>
+    
+
+    <form id="ubah-team-{{ $event->id }}" wire:submit="ubah_team" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <x-card class="space-y-3">
+            <x-slot:header>
+                <div class="p-4 font-bold">
+                    Ganti Tim <br>
+                    <span class="text-xs font-medium">Sesuaikan nama tim mu. (Khusus kategori kelompok).</span>
+                </div>
+            </x-slot:header>
+
+                <div>
+                    <x-select.styled label="Team" wire:model="team" :options="$daftar_klub" searchable/>
+                </div>
+                
+        </x-card>
+    </form>
+        <div class="mt-5">
+            <x-button type="submit" form="ubah-team-{{ $event->id  }}" class="w-full md:w-auto">
+                @lang('Ganti Tim')
+            </x-button>
+        </div>
+
     @endif
+
+    <hr class="border-2">
     
     @if ($event->payments->where('user_id',Auth::user()->id)->sum('nominal') >= $event->price)      
         <x-alert color="indigo" icon="light-bulb">

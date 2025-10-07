@@ -108,7 +108,9 @@ class EventDetailPage extends Component
                 'label' => $daftar_klub->klub. " ~ ketua : $daftar_klub->name",
                 'value' => $daftar_klub->id,
             ]);
-            $partisipan = Participant::where('user_id', Auth::user()->id);
+
+        $partisipan = Participant::all();
+
         return view('livewire.event-detail-page', [
             'event' => Event::find($this->id),
             'daftar_klub' => $daftar_klub,
@@ -117,6 +119,14 @@ class EventDetailPage extends Component
         ])
             // ->title(Event::find($this->id)->title) // custom title
         ;
+    }
+
+
+    public function ubah_team(): void {
+        Participant::where('user_id', Auth::user()->id)->where('participantable_type', Event::class)->where('participantable_id',$this->id)->orderBy('id')->get()->first()->update([
+                'team' => $this->team,
+            ]);
+        $this->success();
     }
 
     public function bayar_event(): void {

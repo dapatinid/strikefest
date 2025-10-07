@@ -112,8 +112,11 @@
   </section>
 
   <!-- Panduan Lomba -->
-  <section id="panduan" class="max-w-6xl mx-auto py-16 px-4 ">
-    <h3 class="text-3xl font-bold text-center mb-8 text-sky-700">Panduan Lomba</h3>
+  <section id="panduan" class="max-w-6xl mx-auto py-16 px-4">
+    <h3 class="text-3xl font-bold text-center text-sky-700">Panduan Lomba</h3>
+    <div class="flex mx-auto">
+      <a download href="{{ asset('storage/files/Regulasi_Karimun_Strike_Fest_2025_E1-1.pdf') }}"  class="text-sm mx-auto mb-6 text-white bg-sky-400 px-2 py-1 rounded-md">Selengkapnya download disini</a>
+    </div>
     <div class="[&>ul]:list-disc [&>ul]:ml-5 list-disc list-inside space-y-3 text-gray-700 max-w-3xl mx-auto">
       <p>
           @php
@@ -166,6 +169,9 @@
             @foreach ($sponsorship as $image)              
               <img src="{{ asset('storage/'.$image->image) }}" alt="sponsorship" class="h-20 object-contain">
             @endforeach         
+            @foreach ($sponsorship as $image)              
+              <img src="{{ asset('storage/'.$image->image) }}" alt="sponsorship" class="h-20 object-contain">
+            @endforeach          
             @foreach ($sponsorship as $image)              
               <img src="{{ asset('storage/'.$image->image) }}" alt="sponsorship" class="h-20 object-contain">
             @endforeach          
