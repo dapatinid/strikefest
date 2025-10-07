@@ -48,7 +48,7 @@
 
     
     @auth
-    <hr class="border-2">
+    <hr class="border-2 border-gray-400">
 
     @if ($partisipan->where('user_id', Auth::user()->id)->where('participantable_id',$event->id)->count() > 0 && $event->participants->value('team') != null )        
     <x-alert color="neutral" class="block">
@@ -84,7 +84,7 @@
             </x-button>
         </div>
 
-        <hr class="border-2">
+        <hr class="border-2 border-gray-400">
     @endif
 
     
