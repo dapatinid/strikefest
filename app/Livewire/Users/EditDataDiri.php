@@ -93,8 +93,8 @@ class EditDataDiri extends Component
             $this->user->image = $this->user->image;
         }
         if ($this->image_id != null) {
-            Storage::disk('public')->putFile('avatar', $this->image_id);
-            $image_id = Storage::disk('public')->putFile('avatar', $this->image_id);
+            Storage::disk('public')->putFile('image_id', $this->image_id);
+            $image_id = Storage::disk('public')->putFile('image_id', $this->image_id);
             $this->user->image_id = $image_id;
         } else {
             $this->user->image_id = $this->user->image_id;

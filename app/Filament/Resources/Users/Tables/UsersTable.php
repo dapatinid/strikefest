@@ -41,6 +41,9 @@ class UsersTable
                     ->sortable(),
                 TextColumn::make('level')
                     ->searchable(),
+
+                ImageColumn::make('image_id')->disk('public'),
+                
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('desa.name')
@@ -53,6 +56,7 @@ class UsersTable
                     ->searchable(),
                 // TextColumn::make('zip_code')
                 //     ->searchable(),
+                
                 // TextColumn::make('poin')
                 //     ->numeric()
                 //     ->sortable(),

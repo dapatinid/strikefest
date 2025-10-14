@@ -39,8 +39,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'city',
         'state',
         'zip_code',
-
         'image_id',
+
     ];
 
     protected $hidden = [

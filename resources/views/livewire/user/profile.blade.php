@@ -45,24 +45,30 @@
             </x-button>
         </x-slot:footer>
     </x-card>
-    <x-card :header="__('Data Diri')" class="flex justify-between" color="primary">
+    <x-card color="primary">
+        <x-slot:header>
+            <div class="flex justify-between px-3 py-2">
+                <span>@lang('Data Diri')</span>
+                <x-button href="/user/profile-data-diri" icon="pencil" wire:navigate.hover sm>
+                    @lang('Edit')
+                </x-button>
+            </div>
+        </x-slot:header>
         <div>
             {{ Auth::user()->gender === 'P' ? 'Perempuan' : 'Laki-Laki' }}, TTL : {{ Auth::user()->tempat_lahir }}, {{ Str::substr(Auth::user()->tanggal_lahir, 8, 2) }}-{{ Str::substr(Auth::user()->tanggal_lahir, 5, 2) }}-{{ Str::substr(Auth::user()->tanggal_lahir, 0, 4) }}, No.ID : {{ Auth::user()->no_id }}, Ukuran Jersey : {{ Auth::user()->ukuran_jersey }}, Nama Klub : {{ Auth::user()->klub }}
         </div>
-        <div>
-            <x-button href="/user/profile-data-diri" icon="pencil" wire:navigate.hover sm>
-                @lang('Edit')
-            </x-button>
-        </div>
     </x-card>
-    <x-card :header="__('Alamat')" class="flex justify-between" color="primary">
+    <x-card color="primary">
+        <x-slot:header>
+            <div class="flex justify-between px-3 py-2">
+                <span>@lang('Alamat')</span>
+                <x-button href="/user/profile-alamat" icon="pencil" wire:navigate.hover sm>
+                    @lang('Edit')
+                </x-button>
+            </div>
+        </x-slot:header>        
         <div>
             {{ Auth::user()->street }} {{ Auth::user()->zip_code }}, {{ App\Models\Village::where('code',Auth::user()->village)->value('name') }}, {{ App\Models\District::where('code',Auth::user()->district)->value('name') }}, {{ App\Models\City::where('code',Auth::user()->city)->value('name') }}, {{ App\Models\Province::where('code',Auth::user()->state)->value('name') }}
-        </div>
-        <div>
-            <x-button href="/user/profile-alamat" icon="pencil" wire:navigate.hover sm>
-                @lang('Edit')
-            </x-button>
         </div>
     </x-card>
 </div>
