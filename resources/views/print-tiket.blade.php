@@ -32,7 +32,7 @@
     <hr size="3" color="black" style="border-top: dotted 1px; margin: 1rem auto;">
 
     <div style="display: flex; justify-content: center; align-items: center; margin-top: 2rem;">
-        <div>{!! QrCode::size(120)->generate(url($url)) !!}</div>
+        <div>{{ $qrcode }}</div>
     </div>
 
  <script type = 'text/javascript'>  
