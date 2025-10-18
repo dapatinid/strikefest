@@ -2,44 +2,45 @@
 
 namespace App\Filament\Resources\Events\Pages;
 
-use App\Filament\Resources\Events\EventResource;
-use App\Models\User;
 use BackedEnum;
-use Filament\Actions\AssociateAction;
-use Filament\Actions\BulkActionGroup;
+use App\Models\User;
+use Filament\Tables\Table;
+use Filament\Support\RawJs;
+use Illuminate\Support\Str;
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
-use Filament\Actions\RestoreBulkAction;
-use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\FileUpload;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Facades\Auth;
+use Filament\Actions\AssociateAction;
+use Filament\Actions\BulkActionGroup;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DissociateAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Actions\DissociateBulkAction;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Resources\Pages\ManageRelatedRecords;
+use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Support\RawJs;
-use Filament\Tables\Columns\Summarizers\Sum;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
+use App\Filament\Resources\Events\EventResource;
+use Filament\Resources\Pages\ManageRelatedRecords;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Participants extends ManageRelatedRecords
 {
@@ -126,6 +127,7 @@ class Participants extends ManageRelatedRecords
         return $table
             ->recordTitleAttribute('Participant')
             ->columns([
+                ImageColumn::make('user.image')->disk('public')->circular()->label('Avatar'),
                 TextColumn::make('user.name')
                     ->searchable(),
                 TextColumn::make('userTeam.klub')

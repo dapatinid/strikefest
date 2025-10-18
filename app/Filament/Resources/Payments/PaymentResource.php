@@ -25,6 +25,7 @@ class PaymentResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CreditCard;
 
     protected static ?string $recordTitleAttribute = 'Payment';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {
@@ -39,6 +40,11 @@ class PaymentResource extends Resource
     public static function table(Table $table): Table
     {
         return PaymentsTable::configure($table);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 
     public static function getRelations(): array

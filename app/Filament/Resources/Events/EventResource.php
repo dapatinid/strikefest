@@ -29,6 +29,7 @@ class EventResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
 
     protected static ?string $recordTitleAttribute = 'Event';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
@@ -43,6 +44,11 @@ class EventResource extends Resource
     public static function table(Table $table): Table
     {
         return EventsTable::configure($table);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 
     public static function getRelations(): array

@@ -29,6 +29,7 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Support\RawJs;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -106,6 +107,7 @@ class Payments extends ManageRelatedRecords
             ->recordTitleAttribute('Payment')
             ->columns([
                 TextColumn::make('date_payment'),
+                ImageColumn::make('image')->disk('public'),
                 TextColumn::make('notes')
                     ->searchable(),
                 TextColumn::make('payment_method')

@@ -16,7 +16,7 @@
         <a href="/login" class="font-bold px-3 py-1 rounded-md bg-blue-300 hover:text-sky-700">LOGIN</a>
         @endguest
         @auth
-        <a href="/ticket" class="font-bold px-3 py-1 rounded-md bg-blue-300 hover:text-sky-700">TIKET <span class="{{ $myTicket > 0 ? 'absolute' : 'hidden'}} p-1 text-white bg-sky-600 rounded-full -mt-4">{{ $myTicket }}</span></a>    
+        <a wire:navigate.hover href="/ticket" class="font-bold px-3 py-1 rounded-md bg-blue-300 hover:text-sky-700">TIKET <span class="{{ $myTicket > 0 ? 'absolute' : 'hidden'}} p-1 text-white bg-sky-600 rounded-full -mt-4">{{ $myTicket }}</span></a>    
         @endauth
       </div>
     </nav>
@@ -65,8 +65,8 @@
             </a>
           @endguest
           @auth              
-            <a href="{{ url('/ticket') }}">
-              <button class="px-6 py-3 bg-sky-500 text-white rounded-xl font-semibold hover:bg-sky-800 flex flex-nowrap gap-3"><span>Cek Status Ticket </span>
+            <a wire:navigate.hover href="/ticket">
+              <button class="cursor-pointer px-6 py-3 bg-sky-500 text-white rounded-xl font-semibold hover:bg-sky-800 flex flex-nowrap gap-3"><span>Cek Status Ticket </span>
                 <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />

@@ -31,6 +31,7 @@ class CpanelPanelProvider extends PanelProvider
             ->path('copanel')
             ->login()
             ->spa()
+            ->sidebarCollapsibleOnDesktop()
             ->userMenuItems([
                 Action::make('home')
                     ->url('/')

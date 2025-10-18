@@ -182,7 +182,7 @@ class EventDetailPage extends Component
             $pembayaran->save();
         }
 
-        $this->image = '';
+        $this->image = null;
         $this->metode_bayar = 'transfer';
         $this->nominal_bayar = 0;
         $this->catatan = '';
@@ -318,7 +318,7 @@ class EventDetailPage extends Component
             $this->bebas_tuntutan = null;
 
 
-            $this->image = '';
+            $this->image = null;
             $this->metode_bayar = 'transfer';
             $this->nominal_bayar = 0;
             $this->catatan = '';

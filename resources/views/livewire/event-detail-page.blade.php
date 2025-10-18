@@ -116,7 +116,7 @@
             <tr>
             <td class="px-4 h-20 border-b border-gray-300 text-center">{{ Carbon\Carbon::parse($py->date_payment)->translatedFormat('Y-M-d H:i') }}</td>
             <td class="px-4 h-20 border-b border-gray-300">{{ $py->notes }}</td>
-            <td class="px-4 h-20 border-b border-gray-300 flex justify-center items-center"><img src="{{ isset($py->image) ? Str::replace('%2F', '/',url('storage', $py->image)) : Str::replace('%2F', '/', url('/assets/images/stempel-kosong.png')) }}" alt="..." class=" size-10"></td>
+            <td class="px-4 h-20 border-b border-gray-300 flex justify-center items-center"><img src="{{ strlen($py->image) > 0 ? Str::replace('%2F', '/',url('storage', $py->image)) : Str::replace('%2F', '/', url('/assets/images/stempel-kosong.png')) }}" alt="..." class=" size-10"></td>
             <td class="px-4 h-20 border-b border-gray-300">{{ $py->payment_method }}</td>
             <td class="px-4 h-20 border-b border-gray-300 text-end">Rp{{ Number::format($py->nominal, locale: 'de') }}</td>
             </tr>
@@ -164,6 +164,18 @@
             <x-button type="submit" form="bayar-event-{{ $event->id  }}" class="w-full md:w-auto">
                 @lang('Bayar Sekarang')
             </x-button>
+        </div>
+        <div class="flex justify-end mt-5">
+            <a href="
+                {{route('printtiket', [
+                            'acara' => $event->id,
+                            'peserta' => Auth::user()->id,
+                        ])}}
+            " class="w-full md:w-auto">
+            <x-button class="w-full md:w-auto" color="gray">
+                @lang('Cetak Tiket')
+            </x-button>
+            </a>
         </div>
 
     @endif

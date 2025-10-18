@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrintController;
 use App\Http\Middleware\IsAdmin;
 use App\Livewire\EventDetailPage;
 use App\Livewire\EventsPage;
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile-alamat', ProfileAlamat::class)->name('user.profilealamat');
 
     Route::get('/ticket', TicketPage::class)->name('ticket');
+    Route::get('/printtiket', [PrintController::class, 'printtiket'])->name('printtiket');
 
     Route::middleware(IsAdmin::class)->group(function () {
         Route::get('/users', Index::class)->name('users.index');
